@@ -4,7 +4,7 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3Client;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectResult;
@@ -104,7 +104,7 @@ public class Resizer implements RequestHandler<resizerInput, String>
     private AmazonS3 getS3Client()
     {
         if (s3client == null) {
-            s3client = new AmazonS3Client();
+            s3client = AmazonS3ClientBuilder.defaultClient();
         }
         return s3client;
     }
